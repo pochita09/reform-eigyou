@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>見積・書類作業を、いまのExcelやLINEのままAIで仕組みに｜リフォーム会社向け</title>
+<style>
+:root{--navy:#1F3A5F;--orange:#E46F2A;--orange-d:#B9551D;--beige:#F6F3EE;--ink:#222;--sub:#5A6270;--line:#E2DED6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;font-size:17px;line-height:1.9;font-feature-settings:"palt";letter-spacing:.04em;padding-bottom:74px}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+.beige{background:var(--beige)}
+h2{font-size:26px;font-weight:800;line-height:1.5;color:var(--navy);margin-bottom:28px}
+h2 small{display:block;font-size:14px;font-weight:700;color:var(--orange);letter-spacing:.12em;margin-bottom:4px}
+h3{font-size:20px;font-weight:800;line-height:1.5;color:var(--navy)}
+.o{color:var(--orange)}
+.sub{color:var(--sub)}
+.photo{border-radius:6px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:62px;padding:16px 24px;border-radius:8px;background:var(--orange);color:#fff;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 4px 0 var(--orange-d);font-family:inherit;letter-spacing:.06em}
+.btn::after{content:"";width:9px;height:9px;border-top:3px solid #fff;border-right:3px solid #fff;transform:rotate(45deg)}
+.btn .free{background:#fff;color:var(--orange);font-size:13px;border-radius:4px;padding:2px 8px}
+.cta{margin-top:36px}
+.cta .note{margin-top:12px;font-size:14px;color:var(--sub)}
+
+header{background:#fff;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+header .name{font-weight:800;color:var(--navy);font-size:15px}
+header a{font-size:14px;font-weight:800;color:#fff;background:var(--orange);padding:8px 14px;border-radius:6px;text-decoration:none}
+
+/* 一言目 */
+.hero{background:var(--beige);padding:48px 0 64px}
+.hero .for{display:inline-block;font-size:14px;font-weight:800;color:var(--navy);border-bottom:3px solid var(--orange);margin-bottom:18px}
+.hero h1{font-size:27px;font-weight:800;line-height:1.5;color:var(--navy)}
+.hero .result{margin-top:22px;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px}
+.hero .result .k{font-size:15px;font-weight:800;color:var(--navy)}
+.hero .result .v{font-size:48px;font-weight:800;color:var(--orange);line-height:1.1;letter-spacing:0}
+.hero .result .v span{font-size:20px;color:var(--navy)}
+.hero .lead{margin-top:14px}
+
+/* 困りごと */
+.trouble-grid{display:grid;gap:24px}
+.checks{list-style:none;display:grid;gap:12px}
+.checks li{background:#fff;border-left:5px solid var(--navy);padding:16px 18px 16px 52px;position:relative;font-weight:700;line-height:1.7;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.checks li::before{content:"";position:absolute;left:18px;top:19px;width:20px;height:20px;border:2px solid var(--navy);border-radius:3px;background:#fff}
+.checks li::after{content:"";position:absolute;left:23px;top:22px;width:11px;height:6px;border-left:3px solid var(--orange);border-bottom:3px solid var(--orange);transform:rotate(-45deg)}
+.after{margin-top:28px;font-size:20px;font-weight:800;color:var(--navy);line-height:1.6}
+
+/* 考え方 */
+.insight-grid{display:grid;gap:28px}
+.vs{display:grid;gap:12px;margin:8px 0 22px}
+.vs div{padding:16px 18px;border-radius:6px}
+.vs .old{background:#ECEAE5;color:var(--sub)}
+.vs .old b{text-decoration:line-through}
+.vs .new{background:var(--navy);color:#fff}
+.vs .new b{color:#FFC59E}
+.vs span{display:block;font-size:13px;font-weight:800;letter-spacing:.08em;margin-bottom:2px}
+.insight p+p{margin-top:12px}
+.insight strong{background:linear-gradient(transparent 62%,rgba(228,111,42,.3) 62%)}
+
+/* できること */
+.cards{display:grid;gap:28px}
+.card .photo{aspect-ratio:3/2;margin-bottom:16px}
+.card .no{font-size:14px;font-weight:800;color:var(--orange);letter-spacing:.1em}
+.card h3{margin:2px 0 8px}
+.card p{font-size:15px;color:var(--sub)}
+
+/* 実績 */
+.result-box{background:#fff;border-radius:8px;padding:32px 22px;border-top:6px solid var(--orange)}
+.big{text-align:center;line-height:1.1;margin-bottom:24px}
+.big strong{font-size:64px;font-weight:800;color:var(--orange);letter-spacing:0}
+.big strong span{font-size:24px;color:var(--navy)}
+.big .arrow{font-size:30px;font-weight:800;color:var(--navy);margin:0 10px}
+.bars{display:grid;gap:12px;max-width:640px;margin:0 auto 36px}
+.bars .row{display:grid;grid-template-columns:4.5em 1fr;align-items:center;gap:12px;font-size:14px;font-weight:800;color:var(--sub)}
+.bars .bar{height:14px;border-radius:7px}
+.bars .before{background:#B9C3D0}
+.bars .after{background:var(--orange);width:7%;min-width:14px}
+.qa{max-width:760px;margin:0 auto}
+.qa dt{font-weight:800;color:var(--navy);font-size:18px;padding-left:34px;position:relative;margin-top:28px}
+.qa dt:first-child{margin-top:0}
+.qa dt::before{content:"Q";position:absolute;left:0;color:var(--orange);font-size:22px;line-height:1.3}
+.qa dd{margin-top:8px;padding-left:34px;position:relative}
+.qa dd::before{content:"A";position:absolute;left:0;top:0;color:var(--navy);font-weight:800;font-size:22px;line-height:1.3}
+.steps{list-style:none;counter-reset:s;margin-top:14px;display:grid;gap:10px}
+.steps li{counter-increment:s;background:var(--beige);border-radius:6px;padding:12px 16px 12px 58px;position:relative;font-size:16px;line-height:1.7}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:11px;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;display:grid;place-items:center;font-size:15px;letter-spacing:0}
+.voice{display:inline-block;margin-top:10px;font-size:22px;font-weight:800;color:var(--navy);border-bottom:3px solid var(--orange)}
+
+/* 担当者 */
+.about{display:grid;gap:32px}
+.about .lead{font-size:17px}
+.career{list-style:none;margin-top:18px;border-top:1px solid var(--line)}
+.career li{display:grid;grid-template-columns:4.2em 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.7}
+.career .y{font-weight:800;color:var(--navy)}
+.rules{list-style:none;display:grid;gap:10px;margin-top:14px}
+.rules li{background:var(--beige);border-radius:6px;padding:14px 16px 14px 46px;position:relative;font-weight:700;font-size:16px;line-height:1.7}
+.rules li::before{content:"";position:absolute;left:18px;top:20px;width:12px;height:7px;border-left:3px solid var(--orange);border-bottom:3px solid var(--orange);transform:rotate(-45deg)}
+
+/* 進め方 */
+.flow-photo{aspect-ratio:16/7;margin-bottom:28px}
+.flow{list-style:none;display:grid;gap:14px}
+.flow li{background:#fff;border-radius:8px;padding:22px 20px;border-left:5px solid var(--orange)}
+.flow .step{font-size:14px;font-weight:800;color:var(--orange);letter-spacing:.1em}
+.flow h3{margin-bottom:4px}
+.flow p{font-size:15px;color:var(--sub)}
+
+/* 料金 */
+.price-top{margin-bottom:32px}
+.price-top .photo{aspect-ratio:3/2}
+.plans{display:grid;gap:16px}
+.plan{border:1px solid var(--line);border-radius:8px;padding:24px 22px;background:#fff}
+.plan.free{border:3px solid var(--orange)}
+.plan .tag{display:inline-block;font-size:13px;font-weight:800;color:#fff;background:var(--orange);border-radius:4px;padding:2px 10px;margin-bottom:6px}
+.plan .price{font-size:34px;font-weight:800;color:var(--navy);line-height:1.3;margin:4px 0 14px;letter-spacing:0}
+.plan.free .price{color:var(--orange)}
+.plan .price small{font-size:14px;color:var(--sub)}
+.plan dl{display:grid;grid-template-columns:5.5em 1fr;gap:6px 10px;font-size:14px;line-height:1.7;border-top:1px solid var(--line);padding-top:12px}
+.plan dt{font-weight:800;color:var(--navy)}
+.notice{margin-top:20px;font-size:14px;color:var(--sub)}
+
+/* 申し込み */
+#apply{background:var(--navy);color:#fff}
+#apply h2{color:#fff;text-align:center}
+#apply h2 small{color:#FFC59E}
+#apply .intro{text-align:center;margin:-12px 0 28px;color:#DCE4EE}
+form{position:relative;background:#fff;color:var(--ink);border-radius:10px;padding:28px 22px}
+form label{display:block;font-weight:800;margin:18px 0 6px;color:var(--navy);font-size:15px}
+form label:first-child{margin-top:0}
+form .req{font-size:11px;color:#fff;background:var(--orange);border-radius:3px;padding:1px 6px;margin-left:8px;vertical-align:2px}
+input,select,textarea{width:100%;font:inherit;font-size:17px;padding:13px;border:1px solid #C8CED6;border-radius:6px;background:#FAFAF8}
+form .btn{margin-top:26px}
+#done{display:none;margin-top:14px;font-weight:700;color:var(--navy);text-align:center}
+.formnote{margin-top:12px;text-align:center;font-size:13px;color:var(--sub)}
+footer{background:#162B47;color:#AAB7C8;font-size:13px;padding:26px 0;text-align:center}
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);padding:8px 12px;box-shadow:0 -4px 16px rgba(0,0,0,.08);z-index:10}
+.sticky .btn{min-height:54px;font-size:16px}
+
+@media(min-width:860px){
+  body{font-size:18px;padding-bottom:0}
+  section{padding:104px 0}
+  h2{font-size:36px;margin-bottom:40px}
+  .hero{padding:88px 0 96px}
+  .hero h1{font-size:46px}
+  .hero .result .v{font-size:72px}
+  .hero .result .v span{font-size:28px}
+  .hero .lead{max-width:36em}
+  .btn{display:inline-flex;width:auto;min-width:400px}
+  .center{text-align:center}
+  .trouble-grid{grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .trouble-grid .photo{height:100%;min-height:420px}
+  .insight-grid{grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .insight-grid .photo{aspect-ratio:4/5}
+  .vs{grid-template-columns:1fr 1fr}
+  .cards{grid-template-columns:repeat(3,1fr);gap:32px}
+  .result-box{padding:56px 64px;max-width:920px;margin:0 auto}
+  .big strong{font-size:96px}
+  .big strong span{font-size:32px}
+  .about{grid-template-columns:1fr 1fr;gap:56px}
+  .flow{grid-template-columns:repeat(3,1fr);gap:20px}
+  .plans{grid-template-columns:1.15fr 1fr 1fr;gap:20px;align-items:center}
+  .plan.free{padding:36px 26px}
+  form{max-width:720px;margin:0 auto;padding:40px 48px}
+  form .btn{width:100%}
+  .sticky{display:none}
+}
+.hero-grid{display:grid;gap:28px}
+.hero-photo{aspect-ratio:3/2}
+.case{display:grid;gap:24px;background:#fff;border-radius:8px;padding:20px;border-top:6px solid var(--orange)}
+.case .photo{aspect-ratio:3/2}
+.case-lead{font-weight:800;color:var(--navy);font-size:18px;line-height:1.7}
+.case-list{margin-top:14px}
+.case-list dt{font-size:14px;font-weight:800;color:#fff;background:var(--navy);display:inline-block;border-radius:4px;padding:1px 10px;margin-top:16px}
+.case-list dd{margin-top:6px;line-height:1.8}
+.case-list .num{display:block;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:0;margin-bottom:4px}
+.case-list .num b{font-size:30px}
+@media(min-width:860px){
+  .hero-grid{grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .hero-photo{aspect-ratio:4/5}
+  .case{grid-template-columns:.9fr 1.1fr;gap:40px;padding:40px;align-items:center}
+  .case-list .num b{font-size:40px}
+}
+/* ファーストビュー */
+.fv{background:var(--beige);color:var(--navy);padding:52px 0 60px;text-align:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.fv::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--navy) 0 70%,var(--orange) 70% 100%)}
+.fv-for{display:inline-block;font-size:14px;font-weight:800;letter-spacing:.08em;color:var(--navy)}
+.fv-for::before,.fv-for::after{content:"";display:none;width:20px;height:2px;background:var(--orange);vertical-align:middle;margin:0 10px 3px}
+.fv-tag{display:table;margin:16px auto 0;background:#fff;border:1px solid var(--line);border-radius:30px;padding:6px 18px 6px 6px;font-size:14px;font-weight:700;color:var(--ink);box-shadow:0 2px 8px rgba(31,58,95,.06)}
+.fv-tag span{display:inline-block;background:var(--navy);color:#fff;border-radius:20px;font-size:12px;padding:1px 10px;margin-right:10px}
+.fv-tag em{font-style:normal;color:var(--orange);font-weight:900;font-size:1.1em}
+.fv-h1{font-size:25px;font-weight:900;line-height:1.55;margin-top:22px;letter-spacing:.02em;color:var(--navy)}
+.fv-h1 .hl{color:var(--orange)}
+.fv-sub{margin-top:16px;font-size:16px;font-weight:700;line-height:1.8;color:var(--ink)}
+.fv-points{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:28px auto 0;max-width:640px}
+.fv-points li{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:6px;padding:12px 6px;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);box-shadow:0 2px 8px rgba(31,58,95,.06)}
+.fv-points span{display:block;font-size:11px;color:var(--orange);letter-spacing:.12em;margin-bottom:4px}
+.fv-cta{margin-top:30px;display:grid;gap:14px;justify-items:center}
+.fv-link{color:var(--navy);font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+@media(min-width:860px){
+  .sp{display:none}
+  .fv{padding:100px 0 108px}
+  .fv-for{font-size:15px}
+  .fv-for::before,.fv-for::after{display:inline-block}
+  .fv-tag{font-size:16px;margin-top:22px}
+  .fv-h1{font-size:48px;margin-top:30px}
+  .fv-sub{font-size:20px;margin-top:20px}
+  .fv-points{gap:14px;margin-top:40px}
+  .fv-points li{font-size:15px;padding:16px 10px}
+  .fv-points span{font-size:12px}
+  .fv-cta{grid-auto-flow:column;justify-content:center;align-items:center;gap:28px;margin-top:40px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="name">見積・書類作業のAI仕組み化</span>
+    <a href="#apply">無料相談</a>
+  </div>
+</header>
+
+<!-- 一言目 -->
+<section class="fv">
+  <div class="wrap">
+    <p class="fv-for">リフォーム会社の社長・営業責任者の方へ</p>
+    <p class="fv-tag"><span>実績</span>現場の報告書づくり 1件 <em>15分 → 1分</em></p>
+    <h1 class="fv-h1">会社の<span class="hl">見積・書類作業</span>を、<br>いまのExcelやLINEのまま<br>AIで仕組み化します。</h1>
+    <p class="fv-sub">どの作業がどれだけ減るかは、<br class="sp">15分お話を聞いてからお伝えします。</p>
+    <ul class="fv-points">
+      <li><span>進め方</span>まず15分<br>お話を聞く</li>
+      <li><span>道具</span>Excel・LINE<br>そのまま使える</li>
+      <li><span>料金</span>先着1社は<br>作るまで無料</li>
+    </ul>
+    <div class="fv-cta">
+      <a class="btn" href="#apply"><span class="free">無料</span>15分の相談の予定を取る</a>
+      <a class="fv-link" href="#price">料金を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 困りごと -->
+<section>
+  <div class="wrap trouble-grid">
+    <div class="photo"><img src="img/trouble.jpg" alt="夜の事務所で見積書を前に頭を抱える営業担当"></div>
+    <div>
+      <h2><small>こんなお悩み</small>こんな作業に、<br>時間を取られていませんか？</h2>
+      <ul class="checks">
+        <li>現地調査から戻ってから見積を作るまでに日が空き、その間にお客さんの気持ちが冷める</li>
+        <li>品番と単価を調べて見積に入れる作業が、営業担当の夜の仕事になっている</li>
+        <li>補助金の書類、完工後の請求、施工事例の更新が後回しになっている</li>
+      </ul>
+      <p class="after">1つでも当てはまれば、その作業は<span class="o">AIで減らせる</span>可能性があります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 知らなかった考え方 -->
+<section class="beige">
+  <div class="wrap insight-grid">
+    <div class="insight">
+      <h2><small>考え方</small>AIを入れるのに、<br>道具の入れ替えは要りません</h2>
+      <div class="vs">
+        <div class="old"><span>よくある思い込み</span><b>新しいシステムに乗り換える</b></div>
+        <div class="new"><span>この進め方</span><b>いまの書式のまま、手作業だけAIに</b></div>
+      </div>
+      <p>私が報告書を1件15分から1分にした時、報告書はいつものフォーマットをそのまま使いました。</p>
+      <p>変えたのは、<strong>人が手でやっていた部分だけ</strong>です。写真を見て作業内容を判断し、分類して、フォーマットの決まった場所に貼り、説明を書く。この部分をAIに任せました。</p>
+      <p>見積や書類も同じです。御社がいま使っているExcelの書式やLINEはそのままに、手で埋めている部分だけをAIの下書きに置き換えます。</p>
+    </div>
+    <div class="photo"><img src="img/insight.jpg" alt="いつものパソコンで作業し、ほっとした表情の事務の女性"></div>
+  </div>
+</section>
+
+<!-- できること -->
+<section>
+  <div class="wrap">
+    <h2><small>できること</small>御社の作業に合わせて、3つの形で作ります</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="photo"><img src="img/can-1.jpg" alt="浴室を測りながらスマホにメモする職人"></div>
+        <p class="no">01</p>
+        <h3>見積の下書き</h3>
+        <p>現地調査のメモから、工事項目と数量の下書きを作る仕組み。LINEに工事メモを送ると見積の下書きが返ってくる見本をお見せできます。</p>
+      </div>
+      <div class="card">
+        <div class="photo"><img src="img/can-2.jpg" alt="施工現場をスマホで撮影する現場担当"></div>
+        <p class="no">02</p>
+        <h3>報告書・書類の下書き</h3>
+        <p>写真といつものフォーマットから、報告書を仕上げる仕組み。補助金の書類は、必要書類の一覧と記入の下書きまでを作ります（要件の判断は御社が行います）。</p>
+      </div>
+      <div class="card">
+        <div class="photo"><img src="img/can-3.jpg" alt="書類が積まれた事務所の机"></div>
+        <p class="no">03</p>
+        <h3>一番時間を取られている作業を1つ</h3>
+        <p>完工後の請求、施工事例の更新など。15分お話を聞いて、御社で一番時間を取られている作業を1つに絞ってから作ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 実績の深掘り -->
+<section class="beige">
+  <div class="wrap">
+    <h2><small>実績</small>事例：現場の報告書づくりを、<br>1件15分から1分に</h2>
+    <div class="case">
+      <div class="photo"><img src="img/result.jpg" alt="現場写真が並んだスマホと、報告書の書式が映ったパソコン"></div>
+      <div>
+        <p class="case-lead">現場の写真を報告書のフォーマットに貼り、説明を書く作業を、AIの仕組みにしました。</p>
+        <dl class="case-list">
+          <dt>困っていたこと</dt>
+          <dd>月末に報告書をまとめて作る残業が、当たり前になっていた</dd>
+          <dt>やったこと</dt>
+          <dd>写真とフォーマットを添付するだけで、AIが写真から作業内容を判断して分類し、フォーマットの適切な場所に配置して、簡単な説明文も書くようにした。違うフォーマットやファイル形式でも使えるようにした</dd>
+          <dt>結果</dt>
+          <dd><span class="num">報告書1件 <b>15分</b> → <b class="o">1分</b></span>月末の残業が要らなくなり、「助かった、これ凄い！」と言われた</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="cta center">
+      <a class="btn" href="#apply">御社の作業でも減らせるか、無料で相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- 担当者 -->
+<section>
+  <div class="wrap">
+    <h2><small>担当者</small>担当者について</h2>
+    <div class="about">
+      <div>
+        <h3>（お名前・屋号をここに入れる）</h3>
+        <p class="lead">施工管理で得た現場感と、Webマーケターとして事業に関わって得た事業感覚を持って、AIの仕組みを作っています。</p>
+        <ul class="career">
+          <li><span class="y">6年</span><span>建設部材メーカー工事部　耐震補強の施工チームリーダー（作業員5〜6名の指示出し・管理、ゼネコンとの打ち合わせ、KYシート・報告書の作成）</span></li>
+          <li><span class="y">2年</span><span>Webマーケティング会社　広告運用・SEOコンテンツディレクター（月間目標を全て達成、部署の月間MVP）</span></li>
+          <li><span class="y">2年</span><span>SEO記事の作成・ディレクション（業務委託）</span></li>
+          <li><span class="y">2年</span><span>ビル清掃・施設管理（ガラス・外壁清掃、写真撮影・報告書作成）</span></li>
+          <li><span class="y">3カ月</span><span>法律事務所専門のWeb広告運用</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>仕事で守っていること</h3>
+        <ul class="rules">
+          <li>いまの仕事の進め方を変えずに使える形で作ります。御社が使っているExcelやLINEなどに合わせます。</li>
+          <li>御社が「困っている」と言った作業だけを作ります。</li>
+          <li>金額や工事内容の最終判断は、人が行う工程を残します。</li>
+          <li>お客さんの個人情報は、黒塗りか仮名にしたものを受け取ります。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 進め方 -->
+<section class="beige">
+  <div class="wrap">
+    <h2><small>進め方</small>相談から開始まで</h2>
+    <ol class="flow">
+      <li><p class="step">STEP 1</p><h3>無料相談（15分）</h3><p>オンラインか電話で、見積や事務で一番時間を取られている作業をお聞きします。</p></li>
+      <li><p class="step">STEP 2</p><h3>ご提案</h3><p>AIで下書きまで作る範囲と、料金をA4 1枚にまとめてお見せします。</p></li>
+      <li><p class="step">STEP 3</p><h3>開始</h3><p>作業1つ分の仕組みを作り、使い方をご説明します。担当者の方が確認して使います。</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section id="price">
+  <div class="wrap">
+    <div class="price-top">
+      <h2 style="margin-bottom:12px"><small>料金</small>まずは1社、作るところまで無料です</h2>
+      <p class="sub">先着1社は、作業1つ分の仕組みを無料で作ります。続ける場合だけ、初期構築と月額をお支払いいただきます。</p>
+    </div>
+    <div class="plans">
+      <div class="plan free">
+        <span class="tag">先着1社</span>
+        <h3>初回無料</h3>
+        <p class="price">0<small>円</small></p>
+        <dl>
+          <dt>含まれるもの</dt><dd>作業1つ分の仕組みづくり</dd>
+          <dt>期間</dt><dd>最長45日</dd>
+          <dt>回数</dt><dd>処理20件まで（20件か45日の早い方で終了）</dd>
+        </dl>
+      </div>
+      <div class="plan">
+        <h3>初期構築</h3>
+        <p class="price">100,000<small>円（税別）</small></p>
+        <dl>
+          <dt>含まれるもの</dt><dd>作業1つ分の仕組みづくり、使い方の説明（オンライン1回）</dd>
+          <dt>期間</dt><dd>仕組みができるまで</dd>
+          <dt>回数</dt><dd>作業1つにつき1回のお支払い</dd>
+        </dl>
+      </div>
+      <div class="plan">
+        <h3>月額</h3>
+        <p class="price">50,000<small>円（税別）／月</small></p>
+        <dl>
+          <dt>含まれるもの</dt><dd>AIの利用料、小さな修正</dd>
+          <dt>期間</dt><dd>1か月単位（解約は前月末までにご連絡）</dd>
+          <dt>回数</dt><dd>調整の打ち合わせ 月1回</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="notice">15分の無料相談は何社でも無料です。見積金額・工事内容の最終判断と、お客さんへの送付は御社が行います。</p>
+    <div class="cta center">
+      <a class="btn" href="#apply"><span class="free">無料</span>15分の相談の予定を取る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 申し込み -->
+<section id="apply">
+  <div class="wrap">
+    <h2><small>無料相談</small>15分の無料相談を申し込む</h2>
+    <p class="intro">オンラインか電話で、15分だけお話を聞かせてください。</p>
+    <form id="f">
+      <label for="co">会社名<span class="req">必須</span></label>
+      <input id="co" name="company" required autocomplete="organization">
+      <label for="nm">ご担当者名<span class="req">必須</span></label>
+      <input id="nm" name="name" required autocomplete="name">
+      <label for="ct">メールアドレスまたは電話番号<span class="req">必須</span></label>
+      <input id="ct" name="contact" required>
+      <label for="dt">ご希望の日時（第1〜第3希望）</label>
+      <textarea id="dt" name="dates" rows="3" placeholder="例：12月3日（水）16時〜／12月4日（木）午前中"></textarea>
+      <label for="how">相談の方法</label>
+      <select id="how" name="method"><option>オンライン</option><option>電話</option><option>どちらでもよい</option></select>
+      <label for="msg">一番時間を取られている作業</label>
+      <textarea id="msg" name="task" rows="4" placeholder="例：見積の作成、補助金の書類、完工後の請求など"></textarea>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <button class="btn" id="send" type="submit">無料相談を申し込む</button>
+      <p id="done"></p>
+      <p class="formnote">ご入力いただいた内容は、ご相談の連絡にのみ使います。</p>
+    </form>
+  </div>
+</section>
+
+<footer><p>運営：（屋号をここに入れる）</p></footer>
+
+<div class="sticky"><a class="btn" href="#apply"><span class="free">無料</span>15分の相談の予定を取る</a></div>
+
+<script>
+// 屋号アカウントで発行したApps ScriptのURL（/exec で終わるもの）を入れる
+var ENDPOINT="__GAS_URL__";
+var f=document.getElementById("f"),done=document.getElementById("done"),send=document.getElementById("send");
+f.addEventListener("submit",function(e){
+  e.preventDefault();
+  send.disabled=true;send.firstChild.nodeValue="送信しています…";
+  fetch(ENDPOINT,{method:"POST",body:new URLSearchParams(new FormData(f))})
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(!j.ok)throw new Error();
+      f.reset();
+      done.style.color="";
+      done.textContent="お申し込みありがとうございます。2営業日以内に、ご希望の日時についてご連絡します。";
+      done.style.display="block";
+      send.firstChild.nodeValue="送信しました";
+    })
+    .catch(function(){
+      done.style.color="#B9551D";
+      done.textContent="送信できませんでした。時間をおいてもう一度お試しください。";
+      done.style.display="block";
+      send.disabled=false;send.firstChild.nodeValue="無料相談を申し込む";
+    });
+});
+</script>
+</body>
+</html>
