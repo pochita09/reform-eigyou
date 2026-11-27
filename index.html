@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>見積・書類作業を、いまのExcelやLINEのままAIで仕組みに｜リフォーム会社向け</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#1F3A5F;--orange:#E46F2A;--orange-d:#B9551D;--beige:#F6F3EE;--ink:#222;--sub:#5A6270;--line:#E2DED6}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#fff;color:var(--ink);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;font-size:17px;line-height:1.9;font-feature-settings:"palt";letter-spacing:.04em;padding-bottom:74px}
+body{background:#fff;color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;font-size:17px;line-height:1.9;font-feature-settings:"palt";letter-spacing:.04em;padding-bottom:74px}
 img{display:block;max-width:100%}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 section{padding:72px 0}
@@ -185,33 +188,100 @@ footer{background:#162B47;color:#AAB7C8;font-size:13px;padding:26px 0;text-align
   .case-list .num b{font-size:40px}
 }
 /* ファーストビュー */
-.fv{background:var(--beige);color:var(--navy);padding:52px 0 60px;text-align:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.fv::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--navy) 0 70%,var(--orange) 70% 100%)}
-.fv-for{display:inline-block;font-size:14px;font-weight:800;letter-spacing:.08em;color:var(--navy)}
-.fv-for::before,.fv-for::after{content:"";display:none;width:20px;height:2px;background:var(--orange);vertical-align:middle;margin:0 10px 3px}
-.fv-tag{display:table;margin:16px auto 0;background:#fff;border:1px solid var(--line);border-radius:30px;padding:6px 18px 6px 6px;font-size:14px;font-weight:700;color:var(--ink);box-shadow:0 2px 8px rgba(31,58,95,.06)}
-.fv-tag span{display:inline-block;background:var(--navy);color:#fff;border-radius:20px;font-size:12px;padding:1px 10px;margin-right:10px}
-.fv-tag em{font-style:normal;color:var(--orange);font-weight:900;font-size:1.1em}
-.fv-h1{font-size:25px;font-weight:900;line-height:1.55;margin-top:22px;letter-spacing:.02em;color:var(--navy)}
+header{position:relative;z-index:2}
+.fv{background:var(--beige);padding:36px 0 56px;position:relative;overflow:hidden}
+.fv::before{content:"";position:absolute;right:-12%;top:-10%;width:70%;height:120%;background:radial-gradient(circle at 60% 45%,#fff 0,rgba(255,255,255,0) 62%);pointer-events:none}
+.fv-grid{position:relative;display:grid;gap:36px}
+.fv-for{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--navy)}
+.fv-for::before{content:"";width:22px;height:2px;background:var(--orange)}
+.fv-h1{font-size:30px;font-weight:900;line-height:1.45;letter-spacing:.02em;color:var(--navy);margin-top:14px}
 .fv-h1 .hl{color:var(--orange)}
-.fv-sub{margin-top:16px;font-size:16px;font-weight:700;line-height:1.8;color:var(--ink)}
-.fv-points{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:28px auto 0;max-width:640px}
-.fv-points li{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:6px;padding:12px 6px;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);box-shadow:0 2px 8px rgba(31,58,95,.06)}
-.fv-points span{display:block;font-size:11px;color:var(--orange);letter-spacing:.12em;margin-bottom:4px}
-.fv-cta{margin-top:30px;display:grid;gap:14px;justify-items:center}
-.fv-link{color:var(--navy);font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.fv-h1 .s{display:block;font-size:.62em;font-weight:700;letter-spacing:.04em;margin-bottom:6px;color:var(--navy)}
+.fv-sub{margin-top:16px;font-size:15px;line-height:1.9;color:var(--sub)}
+.fv-checks{list-style:none;margin-top:20px;display:grid;gap:8px}
+.fv-checks li{position:relative;padding-left:30px;font-size:15px;font-weight:700;line-height:1.6;color:var(--ink)}
+.fv-checks li::before{content:"";position:absolute;left:0;top:3px;width:20px;height:20px;border-radius:50%;background:var(--navy)}
+.fv-checks li::after{content:"";position:absolute;left:6px;top:8px;width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
+.fv-checks b{color:var(--orange)}
+.fv-cta{margin-top:26px;display:grid;gap:12px}
+.fv-cta .btn{font-size:17px}
+.fv-cta-note{font-size:13px;color:var(--sub);display:flex;flex-wrap:wrap;gap:4px 16px}
+.fv-cta-note a{color:var(--navy);font-weight:700;text-underline-offset:4px}
+
+/* FVの図 */
+.fv-visual{position:relative;padding-top:30px}
+.fv-badge{position:absolute;top:0;right:0;z-index:3;background:var(--navy);color:#fff;border-radius:10px;padding:10px 16px;box-shadow:0 10px 24px rgba(31,58,95,.25);line-height:1.35}
+.fv-badge small{display:block;font-size:11px;font-weight:700;color:#FFC59E;letter-spacing:.08em}
+.fv-badge b{font-size:13px;font-weight:700}
+.fv-badge em{display:block;font-style:normal;font-size:22px;font-weight:900;letter-spacing:0}
+.fv-badge em span{color:#FFB27F}
+.chat{position:relative;z-index:2;width:80%;margin-top:-28px;background:#8CABD8;border-radius:14px;padding:12px 12px 14px;box-shadow:0 14px 30px rgba(31,58,95,.22)}
+.chat-top{font-size:11px;font-weight:700;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.chat-top::before{content:"";width:8px;height:8px;border-radius:50%;background:#06C755}
+.bubble{font-size:12px;line-height:1.6;border-radius:12px;padding:8px 11px;max-width:88%;letter-spacing:.02em}
+.bubble.me{margin-left:auto;background:#06C755;color:#fff;border-top-right-radius:3px}
+.bubble.ai{margin-top:8px;background:#fff;color:var(--ink);border-top-left-radius:3px}
+.bubble.ai b{display:inline-block;margin-top:4px;color:var(--orange);font-weight:700}
+.sheet{position:relative;z-index:1;margin:-22px 0 0 auto;width:94%;background:#fff;border-radius:10px;box-shadow:0 18px 40px rgba(31,58,95,.16);overflow:hidden}
+.sheet-bar{display:flex;align-items:center;gap:8px;background:#1D6F42;color:#fff;font-size:11px;font-weight:700;padding:7px 12px}
+.sheet-bar i{width:14px;height:14px;border-radius:3px;background:#fff;opacity:.9}
+.sheet-body{padding:42px 14px 14px}
+.nw{white-space:nowrap}
+.sheet-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6px;margin-bottom:6px}
+.sheet-title b{font-size:14px;color:var(--navy);letter-spacing:.2em}
+.sheet-title span{font-size:10px;color:var(--sub)}
+.sheet table{width:100%;border-collapse:collapse;font-size:11px;line-height:1.5}
+.sheet th{background:#EEF2F7;color:var(--navy);font-weight:700;text-align:left;padding:5px 6px;border:1px solid #DCE3EC}
+.sheet td{padding:5px 6px;border:1px solid #E6EAF0;color:var(--ink)}
+.sheet td.n{text-align:right;letter-spacing:0}
+.sheet .chk{display:inline-block;font-size:10px;font-weight:700;color:var(--orange);background:#FDEEE5;border-radius:3px;padding:0 5px;white-space:nowrap}
+.sheet-foot{margin-top:8px;font-size:10px;color:var(--sub)}
+.fv-caption{margin-top:10px;font-size:11px;color:var(--sub);text-align:right}
 @media(min-width:860px){
   .sp{display:none}
-  .fv{padding:100px 0 108px}
-  .fv-for{font-size:15px}
-  .fv-for::before,.fv-for::after{display:inline-block}
-  .fv-tag{font-size:16px;margin-top:22px}
-  .fv-h1{font-size:48px;margin-top:30px}
-  .fv-sub{font-size:20px;margin-top:20px}
-  .fv-points{gap:14px;margin-top:40px}
-  .fv-points li{font-size:15px;padding:16px 10px}
-  .fv-points span{font-size:12px}
-  .fv-cta{grid-auto-flow:column;justify-content:center;align-items:center;gap:28px;margin-top:40px}
+  .fv{padding:72px 0 96px}
+  .fv-grid{grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+  .fv-for{font-size:14px}
+  .fv-h1{font-size:46px;margin-top:20px}
+  .fv-sub{font-size:17px;margin-top:20px}
+  .fv-checks{margin-top:26px;gap:10px}
+  .fv-checks li{font-size:16px}
+  .fv-cta{margin-top:34px;justify-items:start}
+  .fv-cta .btn{min-width:380px}
+  .fv-visual{padding-top:40px}
+  .fv-badge{right:-8px;padding:12px 20px}
+  .fv-badge em{font-size:28px}
+  .chat{position:absolute;left:-28px;bottom:-56px;width:50%}
+  .sheet{margin:0 0 0 auto;width:92%}
+  .sheet-body{padding:40px 18px 132px}
+  .sheet-foot{text-align:right}
+  .sheet table{font-size:12px}
+  .fv-caption{position:absolute;right:0;bottom:-34px}
+}
+@media(max-width:859px){.pc{display:none}}
+
+/* 担当者 */
+.prof{display:grid;gap:40px}
+.prof-lead{font-size:16px;line-height:2}
+.prof-lead strong{color:var(--navy);background:linear-gradient(transparent 62%,rgba(228,111,42,.25) 62%)}
+.prof-card{margin-top:24px;display:flex;align-items:center;gap:16px;background:var(--beige);border-radius:10px;padding:18px 20px}
+.prof-icon{flex:none;position:relative;overflow:hidden;width:56px;height:56px;border-radius:50%;background:var(--navy)}
+.prof-icon::before{content:"";position:absolute;left:19px;top:12px;width:18px;height:18px;border-radius:50%;background:#fff}
+.prof-icon::after{content:"";position:absolute;left:11px;top:34px;width:34px;height:30px;border-radius:50% 50% 0 0;background:#fff}
+.prof-card .nm{font-weight:900;color:var(--navy);font-size:17px;line-height:1.4}
+.prof-card .tl{font-size:13px;color:var(--sub);line-height:1.6}
+.strengths{list-style:none;display:grid;gap:14px}
+.strengths li{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 20px 20px 74px;position:relative}
+.strengths .num{position:absolute;left:20px;top:18px;font-size:30px;font-weight:900;color:var(--orange);line-height:1;letter-spacing:0}
+.strengths .k{display:block;font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.06em}
+.strengths h4{font-size:18px;font-weight:900;color:var(--navy);line-height:1.5;margin:2px 0 6px}
+.strengths p{font-size:15px;line-height:1.85;color:var(--ink)}
+.rules-wrap{margin-top:48px;border-top:1px solid var(--line);padding-top:36px}
+.rules-wrap h3{font-size:18px}
+@media(min-width:860px){
+  .prof{grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+  .prof-lead{font-size:17px}
+  .rules{grid-template-columns:1fr 1fr;gap:12px}
 }
 </style>
 </head>
@@ -226,19 +296,44 @@ footer{background:#162B47;color:#AAB7C8;font-size:13px;padding:26px 0;text-align
 
 <!-- 一言目 -->
 <section class="fv">
-  <div class="wrap">
-    <p class="fv-for">リフォーム会社の社長・営業責任者の方へ</p>
-    <p class="fv-tag"><span>実績</span>現場の報告書づくり 1件 <em>15分 → 1分</em></p>
-    <h1 class="fv-h1">会社の<span class="hl">見積・書類作業</span>を、<br>いまのExcelやLINEのまま<br>AIで仕組み化します。</h1>
-    <p class="fv-sub">どの作業がどれだけ減るかは、<br class="sp">15分お話を聞いてからお伝えします。</p>
-    <ul class="fv-points">
-      <li><span>進め方</span>まず15分<br>お話を聞く</li>
-      <li><span>道具</span>Excel・LINE<br>そのまま使える</li>
-      <li><span>料金</span>先着1社は<br>作るまで無料</li>
-    </ul>
-    <div class="fv-cta">
-      <a class="btn" href="#apply"><span class="free">無料</span>15分の相談の予定を取る</a>
-      <a class="fv-link" href="#price">料金を見る</a>
+  <div class="wrap fv-grid">
+    <div class="fv-copy">
+      <p class="fv-for">リフォーム会社の社長・営業責任者の方へ</p>
+      <h1 class="fv-h1"><span class="s">いまのExcelやLINEのまま、</span><span class="hl">見積・書類作業</span>を<br>AIで仕組み化します。</h1>
+      <p class="fv-sub">新しいシステムへの乗り換えは不要。<br class="sp">手で埋めている部分だけを、<span class="nw">AIの下書きに置き換えます。</span></p>
+      <ul class="fv-checks">
+        <li>現地調査のメモから、<b>見積の下書き</b>まで</li>
+        <li>写真と書式から、<b>報告書・書類の下書き</b>まで</li>
+        <li>先着1社は、<b>作るところまで無料</b></li>
+      </ul>
+      <div class="fv-cta">
+        <a class="btn" href="#apply"><span class="free">無料</span>15分の相談の予定を取る</a>
+        <p class="fv-cta-note"><span>オンラインか電話で15分</span><a href="#price">料金を見る</a></p>
+      </div>
+    </div>
+    <div class="fv-visual" aria-label="LINEに工事メモを送ると、Excelの見積の下書きが返ってくるイメージ">
+      <div class="fv-badge"><small>実績</small><b>現場の報告書づくり 1件</b><em>15分 <span>→ 1分</span></em></div>
+      <div class="sheet">
+        <div class="sheet-bar"><i></i>見積書_山田様邸_浴室.xlsx</div>
+        <div class="sheet-body">
+          <div class="sheet-title"><b>御見積書</b><span>下書き（AI作成）</span></div>
+          <table>
+            <tr><th>工事項目</th><th>数量</th><th>単価</th></tr>
+            <tr><td>既存浴室 解体・撤去</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
+            <tr><td>ユニットバス 1616</td><td class="n">1台</td><td><span class="chk">要確認</span></td></tr>
+            <tr><td>給排水 接続工事</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
+            <tr><td>電気工事（照明・換気扇）</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
+            <tr class="pc"><td>脱衣所 内装仕上げ</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
+          </table>
+          <p class="sheet-foot">※金額は担当者が確認して決めます</p>
+        </div>
+      </div>
+      <div class="chat">
+        <p class="chat-top">LINE</p>
+        <p class="bubble me">山田様邸 浴室<br>在来浴室→UB 1616<br>解体あり、給湯器そのまま</p>
+        <p class="bubble ai">見積の下書きを作りました。<br><b>Excelを開く ›</b></p>
+      </div>
+      <p class="fv-caption">画面はイメージです</p>
     </div>
   </div>
 </section>
@@ -330,28 +425,30 @@ footer{background:#162B47;color:#AAB7C8;font-size:13px;padding:26px 0;text-align
 <!-- 担当者 -->
 <section>
   <div class="wrap">
-    <h2><small>担当者</small>担当者について</h2>
-    <div class="about">
+    <h2><small>担当者</small>現場の書類を、自分で書いてきた人間が作ります</h2>
+    <div class="prof">
       <div>
-        <h3>（お名前・屋号をここに入れる）</h3>
-        <p class="lead">施工管理で得た現場感と、Webマーケターとして事業に関わって得た事業感覚を持って、AIの仕組みを作っています。</p>
-        <ul class="career">
-          <li><span class="y">6年</span><span>建設部材メーカー工事部　耐震補強の施工チームリーダー（作業員5〜6名の指示出し・管理、ゼネコンとの打ち合わせ、KYシート・報告書の作成）</span></li>
-          <li><span class="y">2年</span><span>Webマーケティング会社　広告運用・SEOコンテンツディレクター（月間目標を全て達成、部署の月間MVP）</span></li>
-          <li><span class="y">2年</span><span>SEO記事の作成・ディレクション（業務委託）</span></li>
-          <li><span class="y">2年</span><span>ビル清掃・施設管理（ガラス・外壁清掃、写真撮影・報告書作成）</span></li>
-          <li><span class="y">3カ月</span><span>法律事務所専門のWeb広告運用</span></li>
-        </ul>
+        <p class="prof-lead">耐震補強の施工チームリーダーとして6年、職人5〜6名をまとめながら、ゼネコンとの打ち合わせ、KYシートや報告書づくりを自分でやってきました。<br><strong>現場が終わってから書類に追われる時間</strong>を、仕事として経験しています。</p>
+        <p class="prof-lead" style="margin-top:12px">だから、新しい道具を押しつけるのではなく、いまの書式と流れのまま、手で埋めている部分だけをAIに任せる形で作ります。</p>
+        <div class="prof-card">
+          <span class="prof-icon" aria-hidden="true"></span>
+          <div><p class="nm">（お名前・屋号をここに入れる）</p><p class="tl">施工管理 6年 ／ Webマーケティング（広告運用・SEO）</p></div>
+        </div>
       </div>
-      <div>
-        <h3>仕事で守っていること</h3>
-        <ul class="rules">
-          <li>いまの仕事の進め方を変えずに使える形で作ります。御社が使っているExcelやLINEなどに合わせます。</li>
-          <li>御社が「困っている」と言った作業だけを作ります。</li>
-          <li>金額や工事内容の最終判断は、人が行う工程を残します。</li>
-          <li>お客さんの個人情報は、黒塗りか仮名にしたものを受け取ります。</li>
-        </ul>
-      </div>
+      <ol class="strengths">
+        <li><span class="num">01</span><span class="k">現場経験</span><h4>工事と書類の流れが分かる</h4><p>施工管理6年。工事項目の組み立て、報告書、安全書類がどう回っているかを分かったうえで、どこをAIに任せるかを決めます。</p></li>
+        <li><span class="num">02</span><span class="k">作った実績</span><h4>自分で作り、現場で使われた</h4><p>報告書づくりを1件15分から1分にした仕組みは、私が作ったものです。月末の残業が要らなくなり、「助かった」と言ってもらえました。</p></li>
+        <li><span class="num">03</span><span class="k">集客の視点</span><h4>事業の数字も見てきた</h4><p>Web広告運用・SEOのディレクターとして、月間目標を全て達成し、部署の月間MVPに。施工事例の更新など、集客につながる作業にも同じ目線で関わります。</p></li>
+      </ol>
+    </div>
+    <div class="rules-wrap">
+      <h3>仕事で守っていること</h3>
+      <ul class="rules">
+        <li>いまの仕事の進め方を変えずに使える形で作ります。御社が使っているExcelやLINEなどに合わせます。</li>
+        <li>御社が「困っている」と言った作業だけを作ります。</li>
+        <li>金額や工事内容の最終判断は、人が行う工程を残します。</li>
+        <li>お客さんの個人情報は、黒塗りか仮名にしたものを受け取ります。</li>
+      </ul>
     </div>
   </div>
 </section>
