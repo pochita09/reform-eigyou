@@ -95,6 +95,23 @@ header a{font-size:14px;font-weight:800;color:#fff;background:var(--orange);padd
 .voice{display:inline-block;margin-top:10px;font-size:22px;font-weight:800;color:var(--navy);border-bottom:3px solid var(--orange)}
 
 /* 担当者 */
+.prof-card-top{margin:0 0 28px}
+.prof-card-top .tl{font-size:14px;color:var(--ink);margin-top:2px}
+.axis{display:grid;gap:12px}
+.axis-col{background:#fff;border:1px solid var(--line);border-top:5px solid var(--navy);border-radius:10px;padding:24px 22px}
+.axis-col:last-child{border-top-color:var(--orange)}
+.axis-k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--orange)}
+.axis-col h3{font-size:22px;font-weight:900;margin:2px 0 10px}
+.axis-fact{font-size:15px;line-height:1.85}
+.axis-you{margin-top:16px;background:var(--beige);border-radius:8px;padding:14px 16px;font-size:15px;font-weight:700;line-height:1.8;color:var(--navy)}
+.axis-you span{display:block;font-size:12px;color:var(--orange);letter-spacing:.08em}
+.axis-x{text-align:center;font-size:28px;font-weight:900;color:var(--orange);line-height:1}
+@media(min-width:860px){
+  .axis{grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch}
+  .axis-x{align-self:center;font-size:40px}
+  .axis-col{padding:32px 30px}
+}
+
 .about{display:grid;gap:32px}
 .about .lead{font-size:17px}
 .career{list-style:none;margin-top:18px;border-top:1px solid var(--line)}
@@ -425,23 +442,27 @@ header{position:relative;z-index:2}
 <!-- 担当者 -->
 <section>
   <div class="wrap">
-    <h2><small>担当者</small>現場の書類を、自分で書いてきた人間が作ります</h2>
-    <div class="prof">
-      <div>
-        <p class="prof-lead">耐震補強の施工チームリーダーとして6年、職人5〜6名をまとめながら、ゼネコンとの打ち合わせ、KYシートや報告書づくりを自分でやってきました。<br><strong>現場が終わってから書類に追われる時間</strong>を、仕事として経験しています。</p>
-        <p class="prof-lead" style="margin-top:12px">だから、新しい道具を押しつけるのではなく、いまの書式と流れのまま、手で埋めている部分だけをAIに任せる形で作ります。</p>
-        <div class="prof-card">
-          <span class="prof-icon" aria-hidden="true"></span>
-          <div><p class="nm">（お名前・屋号をここに入れる）</p><p class="tl">施工管理 6年 ／ Webマーケティング（広告運用・SEO）</p></div>
-        </div>
-      </div>
-      <ol class="strengths">
-        <li><span class="num">01</span><span class="k">現場経験</span><h4>工事と書類の流れが分かる</h4><p>施工管理6年。工事項目の組み立て、報告書、安全書類がどう回っているかを分かったうえで、どこをAIに任せるかを決めます。</p></li>
-        <li><span class="num">02</span><span class="k">作った実績</span><h4>自分で作り、現場で使われた</h4><p>報告書づくりを1件15分から1分にした仕組みは、私が作ったものです。月末の残業が要らなくなり、「助かった」と言ってもらえました。</p></li>
-        <li><span class="num">03</span><span class="k">集客の視点</span><h4>事業の数字も見てきた</h4><p>Web広告運用・SEOのディレクターとして、月間目標を全て達成し、部署の月間MVPに。施工事例の更新など、集客につながる作業にも同じ目線で関わります。</p></li>
-      </ol>
+    <h2><small>担当者</small>現場感と事業感覚の両方で、<br class="pc">AIの仕組みを作ります</h2>
+    <div class="prof-card prof-card-top">
+      <span class="prof-icon" aria-hidden="true"></span>
+      <div><p class="nm">（お名前・屋号をここに入れる）</p><p class="tl">施工管理で得た現場感と、Webマーケターとして事業に関わって得た事業感覚を持って、AIの仕組みを作っています。</p></div>
     </div>
-    <div class="rules-wrap">
+    <div class="axis">
+      <div class="axis-col">
+        <p class="axis-k">現場感</p>
+        <h3>施工管理 6年</h3>
+        <p class="axis-fact">建設部材メーカー工事部で、耐震補強の施工チームリーダー。作業員5〜6名の指示出し・管理、ゼネコンとの打ち合わせ、KYシート・報告書の作成まで担当。</p>
+        <p class="axis-you"><span>御社にとって</span>工事項目や現場の書類の中身が分かるので、説明に時間を取らせず、現場で実際に回る形で作れます。</p>
+      </div>
+      <div class="axis-x" aria-hidden="true">×</div>
+      <div class="axis-col">
+        <p class="axis-k">事業感覚</p>
+        <h3>Webマーケティング</h3>
+        <p class="axis-fact">Webマーケティング会社で広告運用・SEOコンテンツのディレクター。月間目標を全て達成し、部署の月間MVP。</p>
+        <p class="axis-you"><span>御社にとって</span>どの作業を減らすと、時間と売上にどれだけ効くかで、作る作業を選びます。</p>
+      </div>
+    </div>
+<div class="rules-wrap">
       <h3>仕事で守っていること</h3>
       <ul class="rules">
         <li>いまの仕事の進め方を変えずに使える形で作ります。御社が使っているExcelやLINEなどに合わせます。</li>
