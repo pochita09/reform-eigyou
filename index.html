@@ -242,7 +242,7 @@ header{position:relative;z-index:2}
 .sheet{position:relative;z-index:1;margin:-22px 0 0 auto;width:94%;background:#fff;border-radius:10px;box-shadow:0 18px 40px rgba(31,58,95,.16);overflow:hidden}
 .sheet-bar{display:flex;align-items:center;gap:8px;background:#1D6F42;color:#fff;font-size:11px;font-weight:700;padding:7px 12px}
 .sheet-bar i{width:14px;height:14px;border-radius:3px;background:#fff;opacity:.9}
-.sheet-body{padding:42px 14px 14px}
+.sheet-body{padding:42px 14px 40px}
 .nw{white-space:nowrap}
 .sheet-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6px;margin-bottom:6px}
 .sheet-title b{font-size:14px;color:var(--navy);letter-spacing:.2em}
@@ -270,7 +270,7 @@ header{position:relative;z-index:2}
   .fv-badge em{font-size:28px}
   .chat{position:absolute;left:-28px;bottom:-56px;width:50%}
   .sheet{margin:0 0 0 auto;width:92%}
-  .sheet-body{padding:40px 18px 132px}
+  .sheet-body{padding:40px 18px 196px}
   .sheet-foot{text-align:right}
   .sheet table{font-size:12px}
   .fv-caption{position:absolute;right:0;bottom:-34px}
@@ -331,23 +331,25 @@ header{position:relative;z-index:2}
     <div class="fv-visual" aria-label="LINEに工事メモを送ると、Excelの見積の下書きが返ってくるイメージ">
       <div class="fv-badge"><small>実績</small><b>現場の報告書づくり 1件</b><em>15分 <span>→ 1分</span></em></div>
       <div class="sheet">
-        <div class="sheet-bar"><i></i>見積書_山田様邸_浴室.xlsx</div>
+        <div class="sheet-bar"><i></i>見積書_佐藤様邸_LDK改装.xlsx</div>
         <div class="sheet-body">
           <div class="sheet-title"><b>御見積書</b><span>下書き（AI作成）</span></div>
           <table>
             <tr><th>工事項目</th><th>数量</th><th>単価</th></tr>
-            <tr><td>既存浴室 解体・撤去</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
-            <tr><td>ユニットバス 1616</td><td class="n">1台</td><td><span class="chk">要確認</span></td></tr>
-            <tr><td>給排水 接続工事</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
-            <tr><td>電気工事（照明・換気扇）</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
-            <tr class="pc"><td>脱衣所 内装仕上げ</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
+            <tr><td>解体・撤去（キッチン・間仕切り壁）</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
+            <tr><td>木工事（床・壁下地、梁補強）</td><td class="n">24.5㎡</td><td><span class="chk">要確認</span></td></tr>
+            <tr><td>システムキッチン 対面 I型2550</td><td class="n">1台</td><td><span class="chk">要確認</span></td></tr>
+            <tr><td>給排水・ガス配管 移設</td><td class="n">1式</td><td><span class="chk">要確認</span></td></tr>
+            <tr class="pc"><td>フローリング張替え</td><td class="n">24.5㎡</td><td><span class="chk">要確認</span></td></tr>
+            <tr class="pc"><td>クロス張替え（壁・天井）</td><td class="n">86㎡</td><td><span class="chk">要確認</span></td></tr>
+            <tr class="pc"><td>電気（コンセント増設・照明）</td><td class="n">6箇所</td><td><span class="chk">要確認</span></td></tr>
           </table>
-          <p class="sheet-foot">※金額は担当者が確認して決めます</p>
+          <p class="sheet-foot">ほか 産廃処分・養生・諸経費など 5項目 ／ ※金額は担当者が確認して決めます</p>
         </div>
       </div>
       <div class="chat">
         <p class="chat-top">LINE</p>
-        <p class="bubble me">山田様邸 浴室<br>在来浴室→UB 1616<br>解体あり、給湯器そのまま</p>
+        <p class="bubble me">佐藤様邸 LDK改装<br>キッチン 壁付→対面に移設<br>和室との間仕切り撤去<br>床24.5㎡ 壁天井クロス全面<br>コンセント6か所増設</p>
         <p class="bubble ai">見積の下書きを作りました。<br><b>Excelを開く ›</b></p>
       </div>
       <p class="fv-caption">画面はイメージです</p>
